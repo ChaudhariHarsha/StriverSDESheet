@@ -1,0 +1,26 @@
+class Solution {
+public:
+    void combi(int i,int t,vector<int> &can,vector<vector<int>> &ans,vector<int> &temp)
+    {
+       
+        if(t==0){
+              ans.push_back(temp);
+              return;
+        }
+        for(int j=i;j<can.size();j++){
+            if(j>i && can[j]==can[j-1]) continue;
+            if(can[j]>t)break;
+            temp.push_back(can[j]);
+            combi(j+1,t-can[j],can,ans,temp);
+            temp.pop_back();
+        }
+        
+    }
+    vector<vector<int>> combinationSum2(vector<int>& can, int target) {
+        vector<vector<int>>ans;
+        vector<int>temp;
+        sort(can.begin(),can.end());
+        combi(0,target,can,ans,temp);
+        return ans;
+    }
+};
