@@ -1,0 +1,27 @@
+class Solution {
+public:
+    void combi(int i,int t,vector<int> &can,vector<vector<int>> &ans,vector<int> &temp)
+    {
+        if(i==can.size())
+        {
+            if(t==0)
+            ans.push_back(temp);
+            return;
+        }
+        if(can[i]<=t)
+        {
+            temp.push_back(can[i]);
+            combi(i,t-can[i],can,ans,temp);
+            temp.pop_back();
+        }
+        
+        combi(i+1,t,can,ans,temp);
+        
+    }
+    vector<vector<int>> combinationSum(vector<int>& can, int target) {
+        vector<vector<int>>ans;
+        vector<int>temp;
+        combi(0,target,can,ans,temp);
+        return ans;
+    }
+};
