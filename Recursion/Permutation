@@ -1,0 +1,20 @@
+class Solution {
+public:
+    void per(int i, vector<int> &nums,vector<vector<int>> &ans){
+        if(i==nums.size()){
+            ans.push_back(nums);
+            return;
+        }
+        for(int j=i;j<nums.size();j++){
+            swap(nums[j],nums[i]);
+            per(i+1,nums,ans);
+            swap(nums[j],nums[i]);
+        }
+        
+    }
+    vector<vector<int>> permute(vector<int>& nums) {
+        vector<vector<int>>ans;
+        per(0,nums,ans);
+        return ans;
+    }
+};
